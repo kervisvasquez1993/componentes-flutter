@@ -10,13 +10,28 @@ class CardPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(20),
         //padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
-        children: <Widget>[_cardTipo1(), SizedBox(height: 30.0), _cardTipo2()],
+        children: <Widget>[
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+          _cardTipo2(),
+          SizedBox(height: 30.0),
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+          _cardTipo1(),
+          SizedBox(height: 30.0),
+        ],
       ),
     );
   }
 
   _cardTipo1() {
     return Card(
+      elevation: 10.0, // sobra en los card
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Column(
         children: <Widget>[
           ListTile(
@@ -46,7 +61,8 @@ class CardPage extends StatelessWidget {
   }
 
   _cardTipo2() {
-    return Card(
+    final card = Container(
+      //clipBehavior: Clip.antiAlias,
       child: Column(
         children: <Widget>[
           FadeInImage(
@@ -61,6 +77,23 @@ class CardPage extends StatelessWidget {
               padding: EdgeInsets.all(10.0),
               child: Text('No tengo idea de que poner'))
         ],
+      ),
+    );
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30.0),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black26,
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+                offset: Offset(2.0, -1.0) // posicion del card
+                ),
+          ]),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30.0),
+        child: card,
       ),
     );
   }
