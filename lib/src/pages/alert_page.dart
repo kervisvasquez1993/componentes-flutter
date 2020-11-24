@@ -10,7 +10,8 @@ class AlertPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_a_photo),
         onPressed: () {
-          Navigator.pop(context);
+          // Navigator.pop(context);
+          //Navigator.pushNamed(context, opt['ruta']);
         },
       ),
     );
