@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //home: HomePage()
       initialRoute: '/',
-      routes: getAplicationRoutes(),
-      //si no esta definida las ruta se dispara el onGenerateRoute
+      routes: getApplicationRoutes(),
       onGenerateRoute: (RouteSettings settings) {
-        print("la ruta llamada: ${settings.name}");
+        print('Ruta llamda: ${settings.name}');
+
         return MaterialPageRoute(
-            builder: (BuildContext context) => AvatarPage());
+            builder: (BuildContext context) => AlertPage());
       },
     );
   }
