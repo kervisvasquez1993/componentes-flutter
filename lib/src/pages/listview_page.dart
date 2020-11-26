@@ -50,18 +50,31 @@ class _ListaPageState extends State<ListaPage> {
   }
 
   Widget _crearLista() {
-    return ListView.builder(
-      //itemBuilder se encarga de redibujar los elementos que se encuentra dentro de esta lista
-      controller: _scrollController,
-      itemCount: _listaNumero.length, // CUANTOS ELEMENTO TIENE ESTA LISTA
-      itemBuilder: (BuildContext context, int index) {
-        final imagen = _listaNumero[index];
-        return FadeInImage(
-          image: NetworkImage('https://picsum.photos/500/300?random=$imagen'),
-          placeholder: AssetImage('assets/jar-loading.gif'),
-        );
-      },
+    return RefreshIndicator(
+      onRefresh: obtenerPagina1,
+      child: ListView.builder(
+        //itemBuilder se encarga de redibujar los elementos que se encuentra dentro de esta lista
+        controller: _scrollController,
+        itemCount: _listaNumero.length, // CUANTOS ELEMENTO TIENE ESTA LISTA
+        itemBuilder: (BuildContext context, int index) {
+          final imagen = _listaNumero[index];
+          return FadeInImage(
+            image: NetworkImage('https://picsum.photos/500/300?random=$imagen'),
+            placeholder: AssetImage('assets/jar-loading.gif'),
+          );
+        },
+      ),
     );
+  }
+
+  Future<Null> obtenerPagina1() async {
+    final duration = new Duration(seconds: 3);
+    new Timer(duration, () {
+      _listaNumero.clear();
+      _ultimoNumero++;
+      _agregar10();
+    });
+    return Future.delayed(duration);
   }
 
   _agregar10() {
